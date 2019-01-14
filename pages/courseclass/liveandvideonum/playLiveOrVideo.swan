@@ -1,0 +1,8 @@
+<video id="home_video" initial-time='{{initial_time}}' src="{{videoUrl}}" bindplay='startPlay' bindpause="pausePlay" bindended='endPlay' autoplay='false' binderror="listenerVideo" controls='true'>
+  <!-- <cover-view bindtap='startPlay' class='cover-view' wx:if="{{isShowCoverView && cover !=''}}">
+    <cover-image class='cover-view' style='position:absolute;z-index:1;' src="{{cover}}" mode="aspectFill"/>
+    <cover-image style='position:absolute; top:160rpx; left:324rpx; width:101rpx; height:101rpx;z-index:10000;' src="/image/video/icon_playbutton.png"/>
+  </cover-view> -->
+</video>
+<view class='video_title'>{{title}}</view>
+

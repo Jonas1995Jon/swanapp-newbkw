@@ -1,0 +1,137 @@
+<!-- <import src="../nav/nav.swan" /> -->
+<view hidden='{{banxing_tiku == 0?false:true}}'>
+	<block s-key="pageimg" s-for="pageimg, pageimgindex in pagelist">
+		<view class='page_view' style='height:{{pageimgindex == 0 ? 500:380}}rpx;'>
+			<image class='page_img' style='height:{{pageimgindex == 0 ? 500:380}}rpx;{{pageimgindex == pagelist.length-1 ? "padding-bottom:80rpx":""}}'
+			 src='{{pageimg.icon}}'></image>
+		</view>
+	</block>
+	<view class='page_topbutton'>
+		<view class='page_button' hidden='{{havegkk == 1?false:true}}' style='float:left;background:#ffffff;' bindtap='gopubliccourse'>试听公开课</view>
+		<view class='page_button' bindtap='buycourse'>立即购买</view>
+	</view>
+	<view class='page_bottombutton' bindtap='buycourse' hidden='{{scrollTop != 0?false:true}}'>立即购买</view>
+</view>
+<view hidden='{{banxing_tiku == 0?true:false}}'>
+	<!-- <template is="nav" data="{{{nav}}}"></template> -->
+	<view class="top-news" style='{{nav.backgroundColor == 1 ? "background: #388ef2;" : "background:#388ef2;"}}'>
+		<view class="nav-scroll">
+			<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="{=nav.scrollLeft=}" style="width:100%;height:35px">
+				<block s-key="nav" s-for="navItem, navindex in nav.section">
+					<view class='nav-view'>
+						<text id="{{navItem.id}}" catchtap="handleTap" data-index="{{navindex}}" class="nav-name {{navItem.id == nav.currentId ? 'nav-hover' : ''}}">{{navItem.name}}</text>
+					</view>
+				</block>
+			</scroll-view>
+		</view>
+	</view>
+	<block s-if="nav.showView != 1">
+		<view style='margin-top:70rpx;'></view>
+	</block>
+
+	<view>
+		<view class='view_bg'></view>
+		<view class='cell_top_list'>
+			<view class='list_item' bindtap='brushNumTap'>
+				<view class='list_item_img'>
+					<image src='../../image/learn/category/brush_num.png'></image>
+				</view>
+				<view class='list_item_title'>
+					刷题数量
+				</view>
+				<view class='list_item_number'>
+					{{topCountList.shuaticount}}
+				</view>
+			</view>
+			<view class='list_item' bindtap='liveNumTap'>
+				<view class='list_item_img'>
+					<image src='../../image/learn/category/live_time.png'></image>
+				</view>
+				<view class='list_item_title'>
+					直播时长
+				</view>
+				<view class='list_item_number'>
+					{{topCountList.live_timelength}}
+				</view>
+			</view>
+			<view class='list_item' bindtap='videoNumTap'>
+				<view class='list_item_img'>
+					<image src='../../image/learn/category/video_time.png'></image>
+				</view>
+				<view class='list_item_title'>
+					视频时长
+				</view>
+				<view class='list_item_number'>
+					{{topCountList.vod_timelength}}
+				</view>
+			</view>
+		</view>
+		<view class='learning_situation'>
+			<view class='examination_day'>距离考试还有
+				<text>{{recentexamtime}}</text> 天</view>
+			<view class='situation' bindtap='situationClick'>学情分析</view>
+		</view>
+		<view class='learning'>
+			<view class='list_item' bindtap='videolearnTap'>
+				<image src='../../image/learn/category/video_learn.png'></image>
+			</view>
+			<view class='list_item' bindtap='livelearnTap'>
+				<image src='../../image/learn/category/live_learn.png'></image>
+			</view>
+			<view class='list_item' bindtap='brushlearnTap'>
+				<image src='../../image/learn/category/brush_learn.png'></image>
+			</view>
+		</view>
+		<view class='recent_live'>
+			<view class='recent_live_title' hidden='{{public_list.length > 0?false:true}}'>近期直播</view>
+			<block s-key="ymPublicCategory" s-for="ym, ymindex in ymPublicCategory">
+				<block s-key="publiclist" s-for="public, publicindex in public_list">
+					<block s-if="(ym.year+''+ym.month) == (public.year+''+public.month)">
+						<view class='public_time_list' bindtap='publicCellClick' data-index='{{publicindex}}'>
+							<view class='public_time_list_top'>
+								<view class='time_ymd'>
+									<view class="time_md">
+										{{ym.month}}月{{public.day}}日
+									</view>
+									<view class="time_strat_end">
+										<image src='../../image/live/time_cicle.png'></image>
+										{{public.startTimeHour}}-{{public.endTimeHour}}
+									</view>
+								</view>
+								<view class='zhibotype' style='color:#{{public.state=="3"?"388ef2":""}}'>
+									<block s-if="public.state == '0'">
+										未开始
+									</block>
+									<block s-if="public.state == '1'">
+										直播中
+									</block>
+									<block s-if="public.state == '2'">
+										回放中
+									</block>
+									<block s-if="public.state == '3'">
+										即将开始
+									</block>
+								</view>
+							</view>
+							<view class="cells cells_after_title">
+								<view class="teacher_img" style='width:120rpx;heigth:160rpx;'>
+									<image src="{{public.teachericon}}" style="width:96rpx;height:96rpx;border-radius:50rpx;"></image>
+								</view>
+								<view class="linkman">{{public.title}}</view>
+								<view class="username">{{public.teacher}}</view>
+								<block s-if="public.state == 0 || public.state == 3">
+									<block s-if="public.state == 0">
+										<view class="cell_ft type">倒计时{{public.countDownTime}}</view>
+									</block>
+									<block s-if="public.state == 3">
+										<view class="cell_ft type" style='color:#388ef2;'>倒计时{{public.countDownTime}}</view>
+									</block>
+								</block>
+							</view>
+						</view>
+					</block>
+				</block>
+			</block>
+		</view>
+	</view>
+</view>

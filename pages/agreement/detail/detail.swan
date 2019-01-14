@@ -1,0 +1,10 @@
+<!--pages/agreement/details/detail.wxml-->
+<!-- <import src="../../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<import src="../../../utils/wxParse/wxParse.swan" />
+<view style='margin: 0 20rpx;'>
+	<template is="wxParse" data="{{{wxParseData:agreement.nodes}}}" />
+</view>
+<view class='protocol' bindtap="{{countDownNum != 0?'':'protocolClick'}}" style='background:{{countDownNum != 0?"#b3b3b3":"#279df7"}}'>已阅读并签署协议
+	<block s-if='countDownNum != 0'>({{countDownNum}})</block>
+</view>

@@ -1,0 +1,7 @@
+<!--pages/me/checkin/checkin.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class='share_view'>
+  <!-- <image mode='widthFix' src='{{shareImage == null ? "../../../checkin/check_in_bg.png" : shareImage}}'></image> -->
+    <image mode='scaleToFill' src='{{shareImage}}'></image>
+</view>

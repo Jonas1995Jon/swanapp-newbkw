@@ -1,0 +1,147 @@
+/* pages/find/learningRecord/learningRecord.css */
+@import "../../../pages/course/paper/report/report.css";
+
+.circlewrap{
+  margin-bottom: 0;
+  width: 308rpx;
+  height: 308rpx;
+}
+.circle_big,.arc,.arc_l {
+  width: 300rpx;
+  height: 300rpx;
+}
+.circlewrap_in{
+  width: 154rpx;
+  height: 310rpx;
+  line-height: 310rpx;
+}
+.circle_big_text{
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+}
+.circle_big_text text{
+  font-size: 80rpx;
+  color: #388ef2;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.circle_big_text text:first-child {
+  font-size: 28rpx;
+  color: #cdcdcd;
+  height:26rpx;
+  line-height: 26rpx;
+  margin-bottom: 40rpx;
+}
+.circle_big_text text:last-child {
+  font-size:28rpx;
+  color:#388ef2;
+  margin-left: 0;
+  height:26rpx;
+  line-height: 26rpx;
+  margin-top: 20rpx;
+}
+.report_tool_in text {
+  color: #388ef2;
+  font-size: 24rpx;
+  margin-left: 0;
+}
+
+.report_tool_in {
+  padding: 0;
+  text-align: center !important;
+}
+.report_data{
+  font-size: 24rpx;
+  color: #b3b3b3;
+}
+.report_tool {
+  margin: 40rpx 0 92rpx 0;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.fenxi_tab {
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  box-sizing: border-box;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.fenxi_tab view {
+  flex: 1;
+  text-align: center;
+  margin: 0 10rpx;
+}
+.fenxi_tab .line_right{
+  width: 1px;
+  background: #e6e6e6;
+  height: 40rpx;
+  margin-top: 20rpx;
+}
+.fenxi_tab view text {
+  display: block;
+  font-size: 28rpx;
+  color: #b3b3b3;
+}
+.fenxi_tab_avtion {
+  border-bottom: 1px solid #388ef2;
+  box-sizing: border-box;
+}
+.fenxi_tab .fenxi_tab_avtion text{
+  color: #388ef2;
+}
+.fenxi_name {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.fenxi_tip {
+  font-size:24rpx;
+  color: #b3b3b3;
+  text-align: center;
+  margin-top: 45rpx;
+}
+.canvas_view{
+  margin: 60rpx 20rpx 0 20rpx;
+  /* overflow: hidden; */
+  /* width: 100%; */
+  height: 385rpx;
+  overflow: hidden;
+  /* padding: 20rpx;
+  background: #fff; */
+  white-space: nowrap;
+}
+canvas {
+  width: 100%;
+  height: 385rpx;
+}
+/*提示*/
+.report_tool_tip{
+  position: relative; 
+  margin-left:68rpx;
+  margin-top:-50rpx;
+  width: 230rpx;
+  z-index: 9;
+  font-size: 28rpx;
+  color: #279df7;
+  background: #fff;
+  box-shadow: 6rpx 6rpx 12rpx #8A8A8A;
+  padding: 5rpx;
+  border-radius: 4rpx;
+}
+.icon_arrow_down{
+  position: absolute;
+  left:50%;
+  bottom: -24rpx;
+  margin-left:-7rpx;
+  z-index: 12;
+  border: 14rpx solid transparent;
+  width: 0;
+  height: 0;
+  border-top: 14rpx solid #fff;
+}

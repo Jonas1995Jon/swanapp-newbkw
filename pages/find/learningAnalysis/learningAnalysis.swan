@@ -1,0 +1,59 @@
+<!--pages/find/learningRecord/learningRecord.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<!--渲染圆环-->
+<view class='circlewrap'>
+  <view class='circle_big'>
+    <view class='circle_big_text'>
+      <text>{{cicleStrtitle}}</text>
+      <text>{{cicleStr}}</text>
+      <text>{{cicleSymbol}}</text>
+    </view>
+  </view>
+  <view class='circlewrap_in left'>
+    <view animation="{{arc_lData}}" class='arc arc_l'></view>
+  </view>
+  <view class='circlewrap_in right'>
+    <view animation="{{arc_rData}}" class='arc arc_r'></view>
+  </view>
+</view>
+<view class='report_tool'>
+  <view class='report_tool_in'>
+    <view class='report_tool_tip' hidden='{{leftTipHidden}}'>
+      {{leftTipStr}}
+      <view class='icon_arrow_down'></view>
+    </view>
+    <view class='report_data' bindtap='leftTipClick'>
+      <!-- <image mode='widthFix' src='/image/find/paiming.png'></image> -->
+      总人均：<text>{{avgscore}}</text>
+    </view>
+  </view>
+  <view class='report_tool_in'>
+    <!--提示tip-->
+    <view class='report_tool_tip' hidden='{{rightTipHidden}}'>
+      {{rightTipStr}}
+      <view class='icon_arrow_down'></view>
+    </view>
+    <view class='report_data' bindtap='rightTipClick'>
+      <!-- <image mode='widthFix' src='/image/find/jiangbei.png'></image> -->
+      总排名：<text>{{paiming}}</text>
+    </view>
+  </view>
+</view>
+<view class='fenxi_tab'>
+  <block s-key="switchTabItem" s-for="switchTabItem, switchTabindex in switchTabArr">
+    <view bindtap='switchTabClick' data-index='{{switchTabindex}}' class="{{tabindex == switchTabindex ? 'fenxi_tab_avtion' : ''}}">
+      <text>{{switchTabItem}}</text>
+    </view>
+    <text class='line_right'></text>
+  </block>
+</view>
+<!-- swiper嵌套canvas在模拟器上好使，真机上不行 -->
+<!-- <swiper current="{{tabindex}}" bindchange="handleChange" duration="500" style="height:{{clientHeight / 3 + 20}}px"> -->
+<view class='canvas_view'>
+  <block s-key="lineCanvas" s-for="lineCanvas, lineCanvasIndex in lineCanvasArr">
+        <canvas canvas-id="{{lineCanvas.id}}" disable-scroll="true" hidden="{{lineCanvas.canvasHidden == true ? true : false}}" style="height:450rpx;" data-index='{{lineCanvasIndex}}' bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend"></canvas>
+  </block>
+</view>
+<!-- <view class='fenxi_name'>{{coursename}}</view> -->
+<view class='fenxi_tip'>以上数据来源于您最近一月的的学习数据；基于本科目所有考生</view>

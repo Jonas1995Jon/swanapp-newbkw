@@ -1,0 +1,28 @@
+/* pages/find/monthExam/monthExam.css */
+@import "../unitExam/unitExam.css";  
+page{
+  background: #f0eff4;
+}
+.examCon_item {
+  height: 399rpx;
+}
+.examCon_title{
+  margin-bottom: 56rpx;
+}
+.examCon_bg image {
+  height:399rpx;
+}
+.examCon_bg {
+  top: -390rpx;
+}
+.examCon_score {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -30rpx;
+}
+.examCon_score text{
+  font-size: 20rpx;
+  color: #b3b3b3;
+  line-height: 20rpx;
+}

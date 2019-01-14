@@ -1,0 +1,26 @@
+<!--pages/me/star/star.wxml-->
+<!--pages/find/unitExam/unitExam.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class="cells cells_after_title">
+  <view class="cell_br"></view>
+  <block s-key="unitList" s-for="unitList, groupindex in unitList">
+    <view data-hi="{{groupindex}}" bindtap="unitListClick" class="cell cell_access" hover-class="cell_active">
+      <!-- <view class="cell_hd">
+                    <image src="{{cell.icon}}"></image>
+                </view> -->
+      <!-- <block wx:if="{{groupindex != 0 }}"> -->
+        <view class="cell_border_unittop" style="{{groupindex == 0 ? 'border-top:0px;' : ''}}">
+        <view class="cell_unit">{{unitList.title}}</view>
+        <view class="cell_ft cell_ft_in_access" style="float:right;right: 5px;">{{learnType == 7 ? unitList.quecount+ '道' : ''}}</view>
+        </view>
+      <!-- </block>
+      <block wx:else> -->
+        <!-- <view class="cell_unit">{{unitList.title}}</view>
+        <view class="cell_ft cell_ft_in_access">12312</view> -->
+      <!-- </block> -->
+
+    </view>
+  </block>
+
+</view>

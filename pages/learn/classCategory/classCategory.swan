@@ -1,0 +1,30 @@
+<scroll-view class='classCategoryScoll' bindscroll="classScoll" scroll-y="true" scroll-into-view="{=toView=}" style='height:{{windowHeight}}rpx;'>
+	<view class='class_category'>
+		<view class="class_category_leftNav" style='height:{{windowHeight}}rpx;'>
+			<block s-key="bigclassNew" s-for="classItem, classindex in bigclass">
+				<block s-if="classindex == classSelectIndex">
+					<view class="class_name_active"></view>
+				</block>
+				<view class="class_name" style="{{classindex == classSelectIndex ? 'color:#279df7;' : ''}}" bindtap='classSwitch' data-index='{{classindex}}'>{{classItem.bigclass}}</view>
+			</block>
+		</view>
+		<view class="class_category_rightCon">
+			<block s-key="bigclassNew1" s-for="classItem1, classindex1 in bigclass">
+				<view style="{{classindex1 == 3 ? 'height: ' + newxlheight + 'px' : ''}}">
+					<view id='inToView{{classindex1}}'></view>
+					<view class="class_name bigclass_name">{{bigclass[classindex1].bigclass}}</view>
+					<view class="category_list">
+						<block s-key="smalllassNew" s-for="smallclassItem, smallclassindex in bigclass[classindex1].categorylist" data-index='{{smallclassindex}}'>
+							<view class="category_list_item" bindtap='categoryTap' data-smallindex='{{classindex1}}' data-index='{{smallclassindex}}'>
+								<view class='category_img'>
+									<image src='{{smallclassItem.image}}'></image>
+								</view>
+								<view class='category_name'>{{smallclassItem.title}}</view>
+							</view>
+						</block>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+</scroll-view>

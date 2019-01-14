@@ -1,0 +1,109 @@
+<!--pages/me/answerQuestions/questionDetail.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class="question_detail">
+	<block s-key="questionDetailList" s-for="question, questionindex in questionList">
+		<view class="question_detail_list" style='clear:both;{{questionindex == 0 ? "margin-top:40rpx":""}}'>
+			<block s-if='(questionindex > 0 && questionList[questionindex-1].workerid == question.workerid) || (questionindex == 1 && questionList[questionindex].workerid == 0)'>
+				<view class='question_detail_headimg' style='float:left'>
+					<view class='circular' style='background:{{(question.workerid == 0) ? "#2c95f4":"#cdcdcd"}};position:relative;left:28rpx;'></view>
+				</view>
+			</block>
+			<!-- <block wx:elif='{{questionindex > 0 && questionList[questionindex-1].workerid == 0 && question.workerid == 0}}'>
+        <view class='circular' style='float:left'></view>
+      </block> -->
+			<block s-else>
+				<view class='question_detail_headimg' style='float:left'>
+					<block s-if="questionindex == 0">
+						<image src='../../../image/answerquestion/img_me_icon.png'></image>
+					</block>
+					<block s-else>
+						<image src='{{(question.workerid == 0) ? "../../../image/answerquestion/img_me_icon.png" : "../../../image/answerquestion/img_teacher_icon.png"}}'></image>
+					</block>
+				</view>
+			</block>
+
+			<view class='question_detail_content' style='float:left'>
+				<view class='question_detail_title' style='float:left'>
+					<block s-if="questionindex == 0">
+						<rich-text nodes="{{question.problem_description}}"></rich-text>
+						<!-- {{question.problem_description}} -->
+					</block>
+					<block s-else>
+						{{question.reply_content}}
+					</block>
+				</view>
+				<view class='question_detail_imglist' style='float:left'>
+					<block s-if="questionindex == 0">
+						<block s-key="problem_attachment" s-for="problem, problemindex in question.problem_attachmentArr">
+							<block s-if="problem != ''">
+								<image style='{{(problemindex+2) % 3 == 0 ? "margin:30rpx 20rpx 0 20rpx;" : ""}}' mode='aspectFill' bindtap='imgPreview' data-list='{{question.problem_attachmentArr}}'
+								 data-src='{{problem}}' src='{{problem}}'></image>
+							</block>
+						</block>
+					</block>
+					<block s-else>
+						<block s-key="reply_attachment" s-for="reply, reply_attachmentindex in question.reply_attachmentArr">
+							<block s-if="reply != ''">
+								<!-- <image style='{{question.reply_attachmentArr.length <=3 ? "margin-bottom:0rpx;" : ""}}' mode='aspectFit' bindtap='imgPreview' data-list='{{question.reply_attachmentArr}}' data-src='{{reply}}' src='{{reply}}'></image> -->
+								<image style='{{(reply_attachmentindex+2) % 3 == 0 ? "margin:30rpx 20rpx 0 20rpx;" : ""}}' mode='aspectFit' bindtap='imgPreview'
+								 data-list='{{question.reply_attachmentArr}}' data-src='{{reply}}' src='{{reply}}'></image>
+							</block>
+						</block>
+					</block>
+				</view>
+				<view class='question_detail_time'>
+					<image src='../../../image/live/time_cicle.png'></image>
+					{{question.addtime}}
+				</view>
+			</view>
+			<block s-if="questionindex != ((state != 4) ? questionList.length-1 : questionList.length)">
+				<view style="width:10rpx;height:{{question.lineheight + 40}}rpx;border-left:1px solid #cdcdcd;position:relative;left:40rpx;top:20rpx;z-index:-999;"></view>
+			</block>
+			<block s-else>
+				<view style></view>
+			</block>
+		</view>
+	</block>
+	<view class="question_detail_list" s-if='state == 4'>
+		<view class='question_detail_headimg' style='float:left'>
+			<view class='circular' style='background:#2c95f4;position:relative;left:28rpx;'></view>
+		</view>
+		<view class='question_detail_content' style='float:left'>
+			<view class='question_detail_title' style='float:left;color:#388ef2;'>
+				<rich-text nodes="整体评价：{{questionList[0].starrank}} 星"></rich-text>
+				<view></view>
+				<rich-text nodes="评价内容：{{questionList[0].judge}}"></rich-text>
+			</view>
+			<view class='question_detail_time'>
+				<image src='../../../image/live/time_cicle.png'></image>
+				{{questionList[0].addtime}}
+			</view>
+		</view>
+	</view>
+</view>
+<view style='width:100%;height:150rpx;'></view>
+<block s-if="state != 3 && state != 4">
+	<view class='fixb_report'>
+		<view bindtap='sureComplateTap' class='fixb_report_item' hover-class='report_item_hover'>{{(state == 0 || state == 1) ? "关闭提问":"确认完成"}}</view>
+		<view bindtap='continueMessagetap' class='fixb_report_item' style='background:#388ef2;color:#fff;' hover-class='report_item_hover'>继续留言</view>
+	</view>
+</block>
+
+<view class="modal-mask" bindtap="hideMasking" hidden="{{pingjiaHidden}}"></view>
+<action-sheet>
+	<view class='pingjia' hidden="{{pingjiaHidden}}" bindchange="actionSheetbindchange1">
+		<view class='pjtitle'>评价</view>
+		<view class='startList'>
+			<block s-key="scoreiconList" s-for="score, scoreiconindex in star">
+				<image bindtap='starTap' data-index='{{scoreiconindex}}' src='../../../image/answerquestion/{{starSelectIndex > scoreiconindex ? "img_staryes_icon.png":"img_starno_icon.png"}}'></image>
+			</block>
+		</view>
+		<view class='titlelist'>
+			<block s-key="titleArr" s-for="titleArr, titleArrindex in titleArrShow">
+				<view class='{{titleArr.onchecked == true ? "titleAction":""}}' bindtap='titleAciton' data-index='{{titleArrindex}}'>{{titleArr.title}}</view>
+			</block>
+		</view>
+		<view class='sureChoice' bindtap='sureChoiceTap'>提交评价</view>
+	</view>
+</action-sheet>

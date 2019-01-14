@@ -1,0 +1,206 @@
+@import "../modal/modal.css";
+@import "../nav/nav.css";
+page{
+  background: #f5f5f5;
+}
+.page_view{
+  width: 100%;
+  height: 380rpx;
+  line-height: 380rpx;
+}
+.page_img{
+  width: 100%;
+  height: 380rpx;
+  
+}
+.page_topbutton{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: absolute;
+  top: 319rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.page_button{
+  width: 231rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #ffda26;
+  color: #333;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  float: right;
+}
+.page_bottombutton{
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #ffda26;
+  color: #333;
+  font-size: 30rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+.view_bg{
+  background: #388ef2;
+  width: 100%;
+  height: 180rpx;
+}
+.cell_top_list{
+  overflow: hidden;
+  margin: 0 30rpx;
+  background: #fff;
+  display: flex;
+  border-radius: 20rpx;
+  margin-top: -150rpx;
+}
+.list_item{
+  width: 33.3333%;
+  margin: 0 auto;
+  margin-top: 57rpx;
+  margin-bottom: 57rpx;
+}
+.list_item_img{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  height: 90rpx;
+  margin-bottom: 14rpx;
+}
+.list_item_img image{
+  text-align: center;
+  width: 90rpx;
+  height: 90rpx;
+}
+.list_item_title{
+  text-align: center;
+  font-size: 26rpx;
+  color: #333333;
+  margin-bottom: 24rpx;
+}
+.list_item_number{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 24rpx;
+}
+.learning_situation{
+  margin: 40rpx 30rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+.examination_day{
+  font-size: 34rpx;
+  color: #333;
+  float: left;
+}
+.examination_day text{
+  color: #02BAFC;
+}
+.situation{
+  width: 150rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background: #02BAFC;
+  text-align: center;
+  float: right;
+}
+.learning{
+  clear: both;
+  display: flex;
+  margin: 0 30rpx;
+}
+.learning .list_item{
+  margin: 0 auto;
+  width: 210rpx;
+  height: 150rpx;
+}
+.learning .list_item image{
+  width: 210rpx;
+  height: 150rpx;
+  border-radius: 20rpx;
+}
+.recent_live{
+  margin: 60rpx 30rpx 0 30rpx;
+}
+.recent_live_title{
+  font-size: 34rpx;
+  color: #333;
+}
+.public_time_list{
+  margin: 30rpx 0;
+  border-radius: 20rpx;
+  background-color:#fff;
+}
+.public_time_list_top{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #e5e5e5;
+  padding: 30rpx 0;
+  margin: 0 30rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.time_md,.time_strat_end{
+  float: left;
+  padding-right: 30rpx;
+}
+.time_strat_end image{
+  width: 24rpx;
+  height: 24rpx;
+  padding-right: 10rpx;
+}
+.zhibotype{
+  color: #b3b3b3;
+}
+.cells{
+  margin: 30rpx 30rpx 0 30rpx;
+  padding-bottom: 30rpx;
+}
+.linkman {
+  position: absolute;
+  left: 120rpx;
+  top: 0;
+  font-size: 32rpx;
+  color: #333333;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: left;
+  word-break: break-all;/*允许在单词内换行*/
+  text-overflow: -o-ellipsis-lastline;/*css3中webkit内核提供的一个方法类似ellipsis*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;/*自适应盒子*/
+  -webkit-line-clamp: 1;/*此处为1行,如果是两行就改成2*/
+  -webkit-box-orient: vertical;
+}
+.username {
+  position: absolute;
+  left: 120rpx;
+  top: 60rpx;
+  font-size: 24rpx;
+  color: #b3b3b3;
+  height: 24rpx;
+  text-align: left;
+}
+.type {
+  position: absolute;
+  top: 60rpx;
+  right: 0;
+  color: #388ef2;
+}
+.livelist{
+  margin: 10rpx 0;
+  padding: 0;
+}
+.cell_hd image{
+  top: 0;
+  left: 30rpx;
+}

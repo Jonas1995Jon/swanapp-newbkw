@@ -1,0 +1,52 @@
+<view class='main'>
+  <view class='main_top'>
+    <block s-if="brushtype == 1">
+      <image src='../../../image/learn/category/live_num.png'></image>
+    </block>
+    <block s-else>
+      <image src='../../../image/learn/category/video_num.png'></image>
+    </block>
+  </view>
+  <view class='main_middle'>
+    {{brush.watch_video_number}}<text>个</text>
+  </view>
+  <view class='main_title'>观看{{brushtype == 1 ? "直播" : "视频"}}数</view>
+  <view class='main_bottom'>
+    <view class='bottom_list'>
+      <view class='title'>{{brushtype == 1 ? "直播" : "视频"}}总时长</view>
+      <view class='desc'>{{brush.total_timelength}}</view>
+    </view>
+    <view class='bottom_line'>
+    </view>
+    <view class='bottom_list'>
+      <view class='title'>{{brushtype == 1 ? "直播" : "视频"}}观看时长</view>
+      <view class='desc'>{{brush.watch_video_timelength}}</view>
+    </view>
+  </view>
+</view>
+<view class='live_wrap'>
+  <!-- <swiper class='swiper' bindchange="swiperChange" current="{{currentindex}}">
+    <swiper-item> -->
+      <block s-key="watch" s-for="watch, watchindex in watchlist">
+      <view class='live_con' bindtap='playClick' data-index='{{watchindex}}'>
+        <view class='live_list'>
+          <view class='list_left'>
+            <image src="{{watch.coverurl}}"></image>
+          </view>
+          <view class='list_main'>
+            <view class='title_con'>{{watch.title}}</view>
+            <view class='list_right'>
+              已观看{{watch.duration}}
+            </view>
+            <view class='time'>{{watch.addtime}} </view>
+            <!-- <block wx:if="{{second.isfree_replay == 1}}">
+              <view class='learning'>试听</view>
+            </block> -->
+          </view>
+          
+        </view>
+      </view>
+      </block>
+    <!-- </swiper-item>
+  </swiper> -->
+</view>

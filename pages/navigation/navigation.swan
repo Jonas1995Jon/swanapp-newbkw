@@ -1,0 +1,45 @@
+<!--pages/navigation/navigation.wxml-->
+<template name="navigation">
+  <view class='navigation' style='{{navigation.backgroundColor == 1 ? "background:#545c65" : "background:#141c23"}}'>
+    <view class='navigation_left' bindtap='leftBtnClick'>
+      <block s-if="navigation.leftBtn == 1">
+        <image src='{{navigation.leftBtnImg}}'></image>
+      </block>
+      <block s-else>
+        {{navigation.leftBtnTitle}}
+      </block>
+    </view>
+
+    <view class='navigation_center' bindtap='centerBtnClick' data-index='{{navigation.centerBtnClick}}'>
+      <block s-if="navigation.centerBtn == 1">
+        {{navigation.centerBtnTitle}}
+        <image src='{{navigation.centerBtnClick == 0 ? navigation.centerBtnDownImg : navigation.centerBtnUpImg}}'></image>
+      </block>
+      <block s-else>
+        {{navigation.centerBtnTitle}}
+      </block>
+    </view>
+    <view class='downview' hidden='{{navigation.centerBtnClick == 0 ? true : false}}'>
+      <view class='downview_list' style='{{navigation.backgroundColor == 1 ? "background:#545c65;border-top: 1rpx #79838e solid;" : "background:#141c23;border-top: 1rpx #1b242b solid;"}}'>
+        <block s-key="viewTitleList" s-for="viewtitle, titleindex in navigation.viewTitleList">
+          <view bindtap='downviewClick' data-index='{{titleindex}}' class='downview_list_title' style="{{titleindex == navigation.viewTitleList.length - 1 ? 'border:none;' : ''}} {{navigation.backgroundColor == 1 ? 'border-bottom: 1rpx #79838e solid;color:#dcdcdc;' : 'border-bottom: 1rpx #1b242b solid;'}} {{viewtitle == navigation.centerBtnTitle ? 'color:#fff;' : ''}}">
+            {{viewtitle}}
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class='navigation_right' bindtap='rightBtnClick'>
+      <block s-if="navigation.rightBtn== 1">
+        <image src='{{navigation.rightBtnImg}}'></image>
+      </block>
+      <block s-else>
+        {{navigation.rightBtnTitle}}
+      </block>
+    </view>
+  </view>
+
+  <block s-if="navigation.showView != 1">
+    <view style='margin-top:120rpx;'></view>
+  </block>
+</template>

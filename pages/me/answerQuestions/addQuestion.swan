@@ -1,0 +1,56 @@
+<!--pages/me/answerQuestions/addQuestion.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class='add_question'>
+	<form bindsubmit="bindFormSubmit">
+		<view class="question_cell" bindtap='courseActionSheetTap' hidden='{{orderid == undefined ? false : true}}'>
+			<view class="question_cell_content">
+				<view class="question_cell_bd">选择课程</view>
+				<view class="question_cell_ct">{{coursename}}</view>
+				<view class="question_cell_ft">></view>
+			</view>
+		</view>
+		<view class='line-top' hidden='{{orderid == undefined ? false : true}}'></view>
+		<view class='answer_desc'>
+			<view class='answer_desc_content'>
+				<!-- <view class='answer_desc_title'>问题描述</view> -->
+				<textarea auto-height='true' name="textarea" value='{=textareaStr=}' style placeholder='请输入问题描述' maxlength='200' class='desc_textarea'
+				 placeholder-style='desc_text_placeholder' />
+				<textarea value="{=branchqueIndex=}" name="subjectiveText" hidden='true'></textarea>
+			</view>
+		</view>
+		<view class='answer_image'>
+			<view class='answer_image_content'>
+				<!-- <view class='answer_image_title'>选填项</view> -->
+				<view class='answer_image_chioce'>
+					<!-- <view>图片</view> -->
+					<view class="image_list">
+						<block s-key="tempFilePaths" s-for="tempfileitem, tempfileindex in tempFilePaths">
+							<image class='img_view' bindtap='chooseImageTap' src='{{tempfileitem}}'></image>
+							<image class='img_del' bindtap='delImageTap' data-index='{{tempfileindex}}' mode='widthFix' src='../../../image/answerquestion/img_del_icon.png'></image>
+						</block>
+						<image class='img_view' bindtap='chooseImageTap' hidden="{{addImgHidden}}" mode='widthFix' src='../../../image/answerquestion/img_chioce_icon.png'></image>
+					</view>
+
+				</view>
+			</view>
+		</view>
+		<button hidden='{{hiddenSubmit == 0 ? true : false}}' class='subjectiveBtn' form-type="submit"> 提交 </button>
+	</form>
+</view>
+
+
+<view class="modal-mask" bindtap="hideMasking" hidden="{{choiceCourseHidden}}"></view>
+<action-sheet>
+	<view class='choiceCourse' hidden="{{choiceCourseHidden}}" bindchange="actionSheetbindchange1">
+		<view class='courseList'>
+			<block s-key="courseItem" s-for="courseItem, courseItemIndex in courselist">
+				<view class='courseItem' bindtap='courseChoiceTap' data-index='{{courseItemIndex}}' data-courseid='{{courseItem.id}}'>
+					<view class='courseTitle'>{{courseItem.title}}</view>
+					<image src='{{courseItem.selected == 0 ? "../../../image/answerquestion/no_checked.png" : "../../../image/answerquestion/checked.png"}}'></image>
+				</view>
+			</block>
+		</view>
+		<view class='sureChoice' bindtap='sureChoiceTap'>确认</view>
+	</view>
+</action-sheet>

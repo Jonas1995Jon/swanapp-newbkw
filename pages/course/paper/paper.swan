@@ -1,0 +1,355 @@
+<!--pages/course/paper/studyPage.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<import src="../../../utils/wxParse/wxParse.swan" />
+<view class='paper_container' bindtouchstart="handlerStart" bindtouchend="handlerEnd">
+
+  <!--标题-->
+
+  <view class='pd_wrap study_pagetit'>
+    <view class='study_pagetit_l'>
+      {{paperTitleStr}}
+    </view>
+    <view>
+      <text class="font_blue">{{paperindex+1}}</text>
+      <text>|{{papercount}}</text>
+    </view>
+
+  </view>
+
+  <!--功能栏-->
+  <!-- <view class='tool'>
+    <view class='tool_in'>
+      <image mode='widthFix' src='/image/study/clock.png'></image>
+      <text>{{displayTime}}</text>
+    </view>
+    <view class='tool_in' bindtap="answerExplanation">
+      <image mode='widthFix' src='/image/study/answer.png'></image>
+      <text>答案解析</text>
+    </view>
+  </view> -->
+  
+  <!-- <swiper current="{{paperindex}}" bindchange="handleChange" duration="900" style="height:{{clientHeight-36-52}}px"> 显示答案解析就用下面一段 -->
+  <swiper current="{{paperindex}}" bindchange="handleChange" duration="900" style="height:{{clientHeight-36}}px">
+    <block s-key="questionlistItem" s-for="questionlistItem, questionindex in question.list">
+      <swiper-item>
+
+        <block s-if="questionlistItem.enginemode == 1">
+          <!--试题标题-->
+          <view class='title'>
+            <text>( {{quetypename}} )</text>
+            <template is="wxParse" data="{{{wxParseData:paperTitle.nodes}}}" />
+            <!-- {{quetitle}} -->
+          </view>
+          <!--单选题-->
+          <view class='answer_wrap'>
+            <radio-group bindchange="radioChange" data-hi="{{questionindex}}">
+              <label s-key="singleOption" s-for="singleOption, singleOptionIndex in questionlistItem.answerCustom.optionArr">
+                <view class='answer_list'>
+                  <radio value="{{singleOptionIndex}}|{{singleOption.option}}|{{singleOption.optionId}}" />
+                  <!-- <text class='radio check_this'>{{OptionArr.option}}</text> -->
+                  <block s-if="singleOption.optionChecked == 1">
+                    <text class="radio check_this">{{singleOption.option}}</text>
+                  </block>
+                  <block s-else>
+                    <text class="radio">{{singleOption.option}}</text>
+                  </block>
+                  <view class='answer_list_text'>
+                    <!-- {{singleOption.optionTitle}} -->
+                    <block s-if="singleOptionIndex == 0">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle0.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 1">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle1.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 2">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle2.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 3">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle3.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 4">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle4.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 5">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle5.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 6">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle6.nodes}}}" />
+                    </block>
+
+                  </view>
+                </view>
+              </label>
+            </radio-group>
+          </view>
+        </block>
+
+        <block s-if="questionlistItem.enginemode == 2">
+          <!--多选题-->
+          <view class='title'>
+            <text>( {{quetypename}} )</text>
+            <!-- {{quetitle}} -->
+            <template is="wxParse" data="{{{wxParseData:paperTitle.nodes}}}" />
+          </view>
+          <view class='answer_wrap'>
+            <checkbox-group bindchange="checkboxChange" data-hi="{{questionindex}}">
+              <label s-key="singleOption" s-for="singleOption, singleOptionIndex in questionlistItem.answerCustom.optionArr">
+                <view class='answer_list'>
+                  <checkbox value="{{singleOptionIndex}}|{{singleOption.option}}|{{singleOption.optionId}}" checked='{{singleOption.optionChecked == 1 ? true : false}}' />
+                  <block s-if="singleOption.optionChecked == 1">
+                    <text class="checkbox check_this">{{singleOption.option}}</text>
+                  </block>
+                  <block s-else>
+                    <text class="checkbox">{{singleOption.option}}</text>
+                  </block>
+                  <view class='answer_list_text'>
+                    <block s-if="singleOptionIndex == 0">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle0.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 1">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle1.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 2">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle2.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 3">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle3.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 4">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle4.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 5">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle5.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 6">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle6.nodes}}}" />
+                    </block>
+                  </view>
+                </view>
+              </label>
+            </checkbox-group>
+            <view class='un_bound un_bound_checkbox' bindtap="checkboxSubmit" hidden='{{questionlistItem.answerCustom.checkboxBtnShow == true ? true : false}}'>
+              <view class='un_bound_btn bg_blue' hover-class='bg_blue_hover'>
+                <text>提交答案</text>
+              </view>
+            </view>
+          </view>
+
+        </block>
+
+        <block s-if="questionlistItem.enginemode == 3">
+          <!--判断题-->
+          <view class='title'>
+            <text>( {{quetypename}} )</text>
+            <template is="wxParse" data="{{{wxParseData:paperTitle.nodes}}}" />
+          </view>
+          <view class='answer_wrap'>
+            <radio-group bindchange="radioChange" data-hi="{{questionindex}}">
+              <label s-key="singleOption" s-for="singleOption, singleOptionIndex in questionlistItem.answerCustom.optionArr">
+                <view class='answer_list'>
+                  <radio value="{{singleOptionIndex}}|{{singleOption.option}}|{{singleOption.optionId}}" />
+                  <!-- <text class='radio check_this'>{{OptionArr.option}}</text> -->
+                  <block s-if="singleOption.optionChecked == 1">
+                    <text class="radio check_this">{{singleOption.option}}</text>
+                  </block>
+                  <block s-else>
+                    <text class="radio">{{singleOption.option}}</text>
+                  </block>
+                  <view class='answer_list_text'>
+                    <!-- {{singleOption.optionTitle}} -->
+                    <block s-if="singleOptionIndex == 0">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle0.nodes}}}" />
+                    </block>
+                    <block s-if="singleOptionIndex == 1">
+                      <template is="wxParse" data="{{{wxParseData:paperTitle1.nodes}}}" />
+                    </block>
+                  </view>
+                </view>
+              </label>
+            </radio-group>
+          </view>
+        </block>
+
+        <block s-if="questionlistItem.enginemode == 4">
+          <!--智能刷题主观题不支持作答-->
+          <view class='title'>
+            <text>( {{quetypename}} )</text>
+            <template is="wxParse" data="{{{wxParseData:paperTitle.nodes}}}" />
+          </view>
+          <block s-if="questionlistItem.answerCustom.stem.length > 0">
+            <view class='answer_wrap'>
+              <view class='type_caozuo'>
+                <template is="wxParse" data="{{{wxParseData:paperStem.nodes}}}" />
+              </view>
+            </view>
+          </block>
+          <view class='answer_wrap'>
+            <view class='type_caozuo'>
+              本模块，主观题不支持作答，可查看解析核对答案
+            </view>
+          </view>
+        </block>
+
+        <block s-if="questionlistItem.enginemode == 5">
+          <!--主观题-->
+          <view class='title'>
+            <text decode='true'>(&nbsp;主观题&nbsp;)</text>下列关于送配股的股权登记
+          </view>
+          <view class='answer_wrap type_zhuguanwrap'>
+            <view class='type_zhuguan_tit'>(答题区域)</view>
+            <textarea bindfocus='addBlueBorder' bindblur='removeBlueBorder' style='{{border}}' class='zhuguan_text' placeholder-style='zhuguan_text_placeholder' placeholder="请输入答案..." />
+            <view class='submit bg_blue' hover-class='bg_blue_hover'>
+              <text>提交</text>
+            </view>
+          </view>
+        </block>
+
+        <block s-if="questionlistItem.enginemode == 6">
+          <!--组合题-->
+          <view class='title'>
+            <text decode='true'>(&nbsp;组合题&nbsp;)</text>
+            <text>下列关于送配股的股权登记方式的说法中，正确的是（）。这里有很长一段 的题目这里有很长一段的题目这里有很长一段的题目这里有很长一段的题目这里有很长一段的题 目这里有很长一段的题目这里有很长一段的题目
+            </text>
+          </view>
+          <view class='type_zuhe'>
+            <view class='type_zuhe_nav'>
+              <!--打开的问题 type_zuhe_action 点击问题切换显示该问题-->
+              <view class='type_zuhe_list type_zuhe_action'>
+                <text>问题1</text>
+              </view>
+              <view class='type_zuhe_list'>
+                <text>问题2</text>
+              </view>
+              <view class='type_zuhe_list'>
+                <text>问题3</text>
+              </view>
+            </view>
+            <!--组合题公共盒子 zuhe_content_wrap -->
+            <view class='zuhe_content_wrap'>
+              <view class='answer_wrap'>
+                <radio-group bindchange="radioChange">
+                  <label>
+                    <view class='answer_list'>
+                      <radio value="A" checked="false" />
+                      <text class='radio check_this'>A</text>
+                      <view class='answer_list_text'>
+                        送配股的股权登
+                      </view>
+                    </view>
+                  </label>
+                  <label>
+                    <view class='answer_list'>
+                      <radio value="B" checked="false" />
+                      <text class='radio'>B</text>
+                      <view class='answer_list_text'>
+                        送配股的股权登
+                      </view>
+                    </view>
+                  </label>
+                  <label>
+                    <view class='answer_list'>
+                      <radio value="C" checked="false" />
+                      <text class='radio'>C</text>
+                      <view class='answer_list_text'>送配股的股权配股的股
+                      </view>
+                    </view>
+                  </label>
+                  <label>
+                    <view class='answer_list'>
+                      <radio value="D" checked="false" />
+                      <text class='radio'>D</text>
+                      <view class='answer_list_text'>
+                        送配股的股权登
+                      </view>
+                    </view>
+                  </label>
+                </radio-group>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <block s-if="questionlistItem.answerCustom.showExplanation == 1">
+          <!--答案解析-->
+          <block s-if="questionlistItem.mainque.enginemode < 4">
+            <block s-if="questionlistItem.answerCustom.isright == 2 || questionlistItem.answerCustom.isright == 0">
+              <!--答错-->
+              <view class='answer_area'>
+                <block s-if="questionlistItem.answerCustom.useranswer.length > 0 || questionlistItem.answerCustom.useranswerArr.length > 0">
+                  <view>很遗憾，这道题您答错了!</view>
+                  <view class='your_answer'>
+                    <view>您的答案是：
+                      <block s-if="questionlistItem.enginemode == 1 || questionlistItem.enginemode == 3">
+                        <text>{{questionlistItem.answerCustom.useranswer}}</text>
+                      </block>
+                      <block s-if="questionlistItem.enginemode == 2">
+                        <text>{{questionlistItem.answerCustom.useranswerArr}}</text>
+                      </block>
+                    </view>
+                    <block s-if="questionlistItem.answerCustom.extent.length > 0">
+                      <view>难易度：
+                        <text>{{questionlistItem.answerCustom.extent}}</text>
+                      </view>
+                    </block>
+                  </view>
+                </block>
+                <block s-else>
+                  <view>你没有回答这道题!</view>
+                </block>
+
+                <view>正确答案是：
+                  <text class='font_red'>{{questionlistItem.answerCustom.answer}}</text>
+                </view>
+              </view>
+            </block>
+
+            <block s-else>
+              <!--答对-->
+              <view class='answer_area'>
+                <view>恭喜您，答对了!</view>
+              </view>
+            </block>
+          </block>
+          <block s-if="showPerfectAccount == 1">
+            <!--未绑定显示绑定按钮，不显示解析以及其他信息-->
+            <view class='un_bound'>
+              <view bindtap='bindAccount' class='un_bound_btn bg_blue' hover-class='bg_blue_hover'>
+                <text>完善账户后查看答案解析</text>
+              </view>
+            </view>
+          </block>
+          <block s-else>
+            <block s-if="Explanation != ''">
+              <view class='answer_area'>
+                <view class='answer_area_tit'>解析</view>
+                <view class='jiexi_content'>
+                  <!-- {{Explanation}} -->
+                  <template is="wxParse" data="{{{wxParseData:Explanation.nodes}}}" />
+                </view>
+              </view>
+            </block>
+            <block s-if="questionlistItem.answerCustom.knowledgepoint.videocode.length > 0">
+              <view class='answer_area' bindtap='paperVideoPlay' data-index='{{questionindex}}'>
+                <view class='answer_area_tit'>视频讲解</view>
+                <image class='answer_video' mode='widthFix' src='../../../../image/video/play_icon.png'></image>
+              </view>
+            </block>
+
+            <block s-if="questionlistItem.answerCustom.knowledgepoint.knowpoint.length > 0">
+              <view class='answer_area'>
+                <view class='answer_area_tit'>考点</view>
+                <view class='kaodian_content'>{{questionlistItem.answerCustom.knowledgepoint.knowpoint}}</view>
+              </view>
+            </block>
+
+            <view class='answer_area'>
+              <view class='answer_area_tit'>来源</view>
+              <view>帮考研究院</view>
+            </view>
+          </block>
+        </block>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
