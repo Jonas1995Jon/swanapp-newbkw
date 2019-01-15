@@ -114,10 +114,20 @@ Page({
         categoryid: categoryid
       },
       success: res => {
+        let newList = [];
+        let courselist = JSON.parse(swan.getStorageSync('bk_courselist'));
         swan.hideToast();
         var data = res.data;
         console.log(data);
         if (data.errcode == 0) {
+          for (let i = 0; i < courselist.length; i++) {
+            for (let j = 0; j < data.list.length; j++) {
+              if (courselist[i].id == data.list[j].courseid) {
+                newList.push(data.list[j]);
+              }
+            }
+          }
+          data.list = newList;
           var isreadnum = 0;
           for (var i = 0; i < data.list.length; i++) {
             if (data.list[i].replytime != "") {
@@ -222,6 +232,7 @@ Page({
           var courselist = JSON.stringify(courselist);
           swan.setStorageSync('bk_courselist', courselist);
           if (courselist != undefined && courselist.length > 0) {
+            swan.setStorageSync('newCourseList', courselist)
             swan.setStorageSync('centerBtnClickIndex', 0);
             swan.setStorageSync('courseid', data.courselist[0].id);
             swan.setStorageSync('coursename', data.courselist[0].title);

@@ -29,7 +29,7 @@
 </view>
 <view class="cell-container" style='height:50%;'>
   
-  <view class='cell_line'></view>
+  <view class='cell_line' s-if="gjjcjj != undefind && gjjcjj != ''"></view>
   <view class="cells cells_after_title" bindtap="recordClick" data-index="0" data-id="14" s-if='gjjcjj != undefind && gjjcjj != ""'>
       <view class="cell cell_access">
         <view class="left_border cell_bott"></view>
