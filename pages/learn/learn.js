@@ -27,6 +27,7 @@ Page({
       backgroundColor: '1',
       centerBtnClick: 0
     },
+    isVidelPage: false,
     templateList: '',
     switchClassCategory: 0, //是否选择分类用于回调
     touchStart: '0',
@@ -64,6 +65,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 判断是否是从video页观看视频后返回，是跳转到评价页面
+    if (this.data.isVidelPage) {
+      swan.navigateTo({
+        url: '../video/evaluate/evaluate'
+      });
+    }
     swan.setNavigationBarTitle({
       title: swan.getStorageSync('categoryname')
     });

@@ -55,7 +55,8 @@ Page({
       img: '../../../image/home/zhibo.png',
       title: '2017年直播课程',
       videonum: 100
-    }]
+    }],
+    isVidelPage: false,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -78,6 +79,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 判断是否是从video页观看视频后返回，是跳转到评价页面
+    if (this.data.isVidelPage) {
+      swan.navigateTo({
+        url: '../../video/evaluate/evaluate'
+      });
+    }
     //切换课程两种情况1、从我的课程进入2、从选择分类进入
     if (this.data.switchClassCategory == 1) {
       this.setSwitchClassCategory(swan.getStorageSync('navIndex') > 0 ? swan.getStorageSync('navIndex') : 0);

@@ -206,6 +206,10 @@ Page({
   onUnload: function () {
     this.logsTimerStopHandler();
     this.onlineTimerStopHandler();
+    let pages = getCurrentPages();
+    let prePage = pages.length - 1;
+    pages[prePage].setData({isVidelPage: true});
+    console.log(pages[prePage])
   },
 
   /**

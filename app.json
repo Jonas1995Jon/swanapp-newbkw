@@ -3,6 +3,7 @@
     "pages/me/me",
     "pages/index/index",
     "pages/video/video",
+    "pages/video/evaluate/evaluate",
     "pages/live/live",
     "pages/find/find",
     "pages/course/changeCategory/changeCategory",

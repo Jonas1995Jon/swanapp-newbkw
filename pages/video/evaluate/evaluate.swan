@@ -1,0 +1,35 @@
+<view s-for="titleitem, titleIndex in titlelist" s-key="titlekey" class='pj_view'>
+  <view class='bigtitle'>{{titleitem}}</view>
+  <view class='start_view'>
+    <view class='starttouch' bindtouchmove='startscroll' data-index='{{titleIndex}}'>
+      <block s-for="staritem, starIndex in stars" s-key="starkey">
+        <image class="star-image" style="left: {{staritem*150}}rpx" src="{{keylist[titleIndex] > staritem ?(keylist[titleIndex]-staritem == 0.5?halfSrc:selectedSrc) : normalSrc}}" data-key="{{staritem+1}}" data-index='{{titleIndex}}' bindtap="startClick">
+        </image>
+      </block>
+    </view>
+    <block s-if='keylist[titleIndex] == 0'>
+      <view class='smalltitle' style='font-size: 20rpx;'>请滑动星星评价</view>
+    </block>
+    <block s-else>
+      <view class='smalltitle'>
+        <block s-if='keylist[titleIndex]*2 > 0 && keylist[titleIndex]*2 < 3'>
+          {{keylist[titleIndex]*2}}分 不满意
+        </block>
+        <block s-elif='keylist[titleIndex]*2 >= 3 && keylist[titleIndex]*2 < 6'>
+          {{keylist[titleIndex]*2}}分 一般
+        </block>
+        <block s-elif='keylist[titleIndex]*2 >= 6 && keylist[titleIndex]*2 < 9'>
+          {{keylist[titleIndex]*2}}分 不错
+        </block>
+        <block s-else>
+          {{keylist[titleIndex]*2}}分 超赞
+        </block>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='proposal'>
+  <text class='bigtitle'>5.其他建议</text>
+  <textarea class='content' maxlength='-1' bindinput='proposal' value='{=textareaStr=}'></textarea>
+</view>
+<view class='button' bindtap='proposalClick'>提交评价</view>
