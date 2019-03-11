@@ -276,7 +276,7 @@ Page({
   getOpenIdAndSessionKey: function (code) {
     var that = this;
     swan.request({
-      url: 'https://openapi.baidu.com/nalogin/getSessionKeyByCode?code=' + code + '&client_id=' + getApp().globalData.sh_key + '&sk=' + getApp().globalData.appsecret,
+      url: 'https://spapi.baidu.com/oauth/jscode2sessionkey?code=' + code + '&client_id=' + getApp().globalData.sh_key + '&sk=' + getApp().globalData.appsecret,
       success: res => {
         var data = res.data;
         swan.setStorageSync('wx_openid', data.openid);
